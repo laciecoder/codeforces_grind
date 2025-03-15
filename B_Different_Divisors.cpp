@@ -16,16 +16,16 @@ void sieve(){
   isPrime[0] = isPrime[1] = false;
   for(int i = 2; i * i <= limit; i++){
     if(isPrime[i]){
+      primes.pb(i);
       for(int j = i * i; j <= limit; j += i){
         isPrime[j] = false;
       }
     }
   }
-  for(int i = 2; i <= limit; i++){
-    if(isPrime[i]){
-      primes.pb(i);
-    }
-  }
+  // for(int i = 2; i <= limit; i++){
+  //   if(isPrime[i]){
+  //   }
+  // }
   isPrime.clear();
 }
 
