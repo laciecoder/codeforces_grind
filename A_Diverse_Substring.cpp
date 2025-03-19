@@ -10,15 +10,13 @@ using namespace std;
 #define print(x) cout << x << "\n"
 
 void solve(){
-  int n, t;
-  cin >> n >> t;
-  vector<int> arr(n - 1);
-  for(auto& val: arr)
-    cin >> val;
-  arr.pb(1);
-  for(int i = 1; i <= n; i += arr[i - 1]){
-    if(i == t){
+  int n;
+  string str;
+  cin >> n >> str;
+  for(int i = 1; i < n; i++){
+    if(str[i - 1] != str[i]){
       print("YES");
+      cout << str[i - 1] << str[i] << endl;
       return;
     }
   }

@@ -9,20 +9,20 @@ using namespace std;
 #define int ll
 #define print(x) cout << x << "\n"
 
+
 void solve(){
-  int n, t;
-  cin >> n >> t;
-  vector<int> arr(n - 1);
-  for(auto& val: arr)
-    cin >> val;
-  arr.pb(1);
-  for(int i = 1; i <= n; i += arr[i - 1]){
-    if(i == t){
-      print("YES");
-      return;
-    }
+  int n;
+  cin >> n;
+  vector<int> arr(n);
+  for(auto& ch: arr)
+    cin >> ch;
+  int ans = arr[n - 1];
+  int temp = arr[n - 1];
+  for(int i = n - 2; i >= 0; i--){
+    temp = min(temp - 1, arr[i]);
+    ans += max(temp, 0LL);
   }
-  print("NO");
+  print(ans);
 }
 
 signed main()

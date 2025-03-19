@@ -10,19 +10,23 @@ using namespace std;
 #define print(x) cout << x << "\n"
 
 void solve(){
-  int n, t;
-  cin >> n >> t;
-  vector<int> arr(n - 1);
+  int n, x, y;
+  cin >> n >> x >> y;
+  vector<int> arr(n);
   for(auto& val: arr)
     cin >> val;
-  arr.pb(1);
-  for(int i = 1; i <= n; i += arr[i - 1]){
-    if(i == t){
-      print("YES");
+  
+  for(int i = 0; i < n; i++){
+    int mini = arr[i];
+    for(int j = max(i - x, 0LL); j < min(n, i + y + 1); j++){
+      mini = min(mini, arr[j]);
+    }
+    if(mini == arr[i]){
+      print(i + 1);
       return;
     }
   }
-  print("NO");
+
 }
 
 signed main()
