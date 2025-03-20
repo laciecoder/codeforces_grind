@@ -12,32 +12,30 @@ using namespace std;
 
 
 void solve(){
-  int n;
-  cin >> n;
-  vi arr(n);
-  int posodd = 0, negodd = 0, temp = 0;
-  for(auto& val: arr){
+  int n, k;
+  cin >> n >> k;
+  vi arr(n), idx(n);
+  iota(all(idx), 1);
+  for(auto& val: arr)
     cin >> val;
-    temp += (val / 2);
-    if(val > 0){
-      posodd += (val % 2 == 1);
-    }
-    if(val < 0){
-      negodd += (abs(val) % 2 == 1);
-    }
-  }
-  for(auto& val: arr){
-    if(temp > 0 && val < 0 && abs(val) % 2 == 1){
-      print((val - 1) / 2);
-      temp--;
-    }
-    else if(temp < 0 && val > 0 && val % 2 == 1){
-      print((val + 1) / 2);
-      temp++;
+  sort(all(idx), [&](int a, int b){
+    return arr[a - 1] < arr[b - 1];
+  });
+  int i = 0;
+  vi ans;
+  while(i < n && k > 0){
+    if(k - arr[idx[i] - 1] >= 0){
+      ans.pb(idx[i]);
+      k -= arr[idx[i] - 1];
     }
     else{
-      print((val / 2));
+      break;
     }
+    i++;
+  }
+  print(i);
+  for(auto& val: ans){
+    cout << val << " ";
   }
 }
 
