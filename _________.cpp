@@ -1,0 +1,50 @@
+  #include <bits/stdc++.h>
+  typedef long long ll;
+  using namespace std;
+
+  #define all(v) v.begin(), v.end()
+  #define rall(v) v.rbegin(), v.rend()
+  #define pb push_back
+  #define sz(a) (int)a.size()
+  #define int ll
+  #define print(x) cout << x << "\n"
+  #define vi vector<int>
+  #define INF LLONG_MAX
+  #define NINF LLONG_MIN
+
+  void solve(){
+    int mod = 1e9;
+    int n, k;
+    cin >> n >> k;
+
+    queue<int> q;
+    int currSum = k;
+    for(int i = 0; i < k; i++){
+      q.push(1);
+    }
+    for(int i = k; i <= n; i++){
+      int nv = currSum % mod;
+      currSum -= q.front();
+      currSum += mod;
+      currSum %= mod;
+      q.pop();
+      q.push(nv % mod);
+      currSum = (currSum % mod + nv % mod) % mod;
+      currSum %= mod;
+    }
+    print(q.back());
+  }
+
+  signed main()
+  {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    int t = 1;
+    // cin >> t;
+    while (t--)
+    {
+      solve();
+    }
+    return 0;
+  }
